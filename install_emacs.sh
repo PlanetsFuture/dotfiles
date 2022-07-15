@@ -1,6 +1,6 @@
 #!/bin/bash
 #############################################################
-# Install latest stable Emacs
+# Install latest Emacs Version
 # Author: Danny <danny.ramrez7@gmail.com>
 # URL: https://github.com/PlanetsFuture/dotfiles
 #############################################################
