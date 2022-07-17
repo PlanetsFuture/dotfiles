@@ -17,3 +17,8 @@ export PATH=${GOPATH//://bin:}/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
+
+# Algorithms
+export CLASSPATH=$CLASSPATH:~/PJ/Java/stdlib.jar
+export CLASSPATH=$CLASSPATH:~/PJ/Java/algs4.jar
+

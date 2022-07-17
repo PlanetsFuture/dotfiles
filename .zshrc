@@ -1,6 +1,6 @@
 # vars
 DOTFILES=$HOME/.dotfiles
-EMACSD=$HOME/.emacs.d
+EMACSD=$HOME/danny-emacs
 
 source ~/antigen.zsh
 
@@ -37,8 +37,37 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+# For Emacs vterm
+if [ -n "$INSIDE_EMACS" ]; then
+    DISABLE_AUTO_TITLE="true"
+    # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray,underline'
 
+    # VTerm
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+        function vterm_printf(){
+            if [ -n "$TMUX" ]; then
+                # tell tmux to pass the escape sequences through
+                # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+                printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+            elif [ "${TERM%%-*}" = "screen" ]; then
+                # GNU screen (screen, screen-256color, screen-256color-bce)
+                printf "\eP\e]%s\007\e\\" "$1"
+            else
+                printf "\e]%s\e\\" "$1"
+            fi
+        }
+
+        function vterm_prompt_end() {
+            vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+        }
+
+        setopt PROMPT_SUBST
+        PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+        alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+        alias reset='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+    fi
+fi
 # Prettify ls
 if (( $+commands[gls] )); then
     alias ls='gls --color=tty --group-directories-first'
@@ -60,6 +89,6 @@ alias te="$EDITOR -nw"
 alias rte="$EDITOR -e '(let ((last-nonmenu-event nil) (kill-emacs-query-functions nil)) (save-buffers-kill-emacs t))' && te"
 
 # General
-alias zshconf="$EDITOR $HOME/.zshrc; $EDITOR $HOME/.zshrc.local"
+alias zshconf="$EDITOR $HOME/.zshrc"
 alias h='history'
 alias c='clear'

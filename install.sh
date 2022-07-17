@@ -2,7 +2,7 @@
 
 # Variables
 DOTFILES = $HOME/.dotfiles
-EMACSD=$HOME/.emacs.d
+EMACSD=$HOME/danny-emacs
 
 # Get OS information
 OS=`uname -s`
@@ -186,9 +186,10 @@ ln -sf $DOTFILES/.zshenv $HOME/.zshenv
 ln -sf $DOTFILES/.zshrc $HOME/.zshrc
 ln -sf $DOTFILES/.zprofile $HOME/.zprofile
 ln -sf $DOTFILES/.vimrc $HOME/.vimrc
-
+ln -sf $DOTFILES/.alacritty.yml
 cp -n $DOTFILES/.npmrc $HOME/.npmrc
 cp -n $DOTFILES/.gemrc $HOME/.gemrc
+
 mkdir -p $HOME/.cargo && cp -n $DOTFILES/cargo.config $HOME/.cargo/config
 cp -n $DOTFILES/.zshrc.local $HOME/.zshrc.local
 mkdir -p $HOME/.pip; cp -n $DOTFILES/.pip.conf $HOME/.pip/pip.conf

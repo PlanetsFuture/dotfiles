@@ -1,0 +1,68 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
+
+window:
+  decorations: buttonless
+  startup_mode: Windowed
+  padding:
+    x: 6
+    y: 6
+  opacity: 0.80
+
+  title: Alacritty
+
+font:
+  normal:
+    family: Menlo
+  size: 14.0
+
+tabspaces: 4
+use_this_strokes: true
+
+key_bindings:
+  # - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }
+  - { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: V, mods: Command, action: Paste }
+  - { key: C, mods: Command, action: Copy }
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
+  - { key: Q, mods: Command, action: Quit }
+colors:
+  name: 3024 (dark)
+  author: Chris Kempson
+  primary:
+    background: "#090300"
+    foreground: "#a5a2a2"
+  cursor:
+    text: "#090300"
+    cursor: "#a5a2a2"
+  normal:
+    black: "#090300"
+    red: "#db2d20"
+    green: "#01a252"
+    yellow: "#fded02"
+    blue: "#01a0e4"
+    magenta: "#a16a94"
+    cyan: "#b5e4f4"
+    white: "#a5a2a2"
+  bright:
+    black: "#5c5855"
+    red: "#db2d20"
+    green: "#01a252"
+    yellow: "#fded02"
+    blue: "#01a0e4"
+    magenta: "#a16a94"
+    cyan: "#b5e4f4"
+    white: "#f7f7f7"
+theme: 3024.dark
